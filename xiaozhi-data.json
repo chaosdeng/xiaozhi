@@ -1,0 +1,54 @@
+{
+  "updatedAt": "2026-06-09 15:40",
+  "dataSource": {
+    "name": "东方财富公开接口",
+    "status": "已校验可用",
+    "note": "公开源，无正式 SLA"
+  },
+  "portfolio": {
+    "name": "小智",
+    "initialCapital": 677132,
+    "totalAsset": 664337,
+    "dailyPnl": 2210,
+    "totalReturnPct": -1.89,
+    "benchmarkReturnPct": -2.58,
+    "excessReturnPct": 0.69,
+    "cashPct": 47.2,
+    "marketState": "震荡偏防守",
+    "todayAction": "无操作",
+    "todayReason": "未触发明确买入、卖出或换仓条件；当前优先守住利润、盯住风险、等待更高胜率买点。"
+  },
+  "riskAlerts": [
+    {
+      "level": "high",
+      "title": "恒瑞医药止损风险",
+      "detail": "现价 46.38，浮亏 -8.3%，距止损价 42.985 约 7.9%。"
+    },
+    {
+      "level": "medium",
+      "title": "现金比例偏高",
+      "detail": "现金 47.2%，略高于震荡市场目标区间，等待高胜率机会。"
+    }
+  ],
+  "positions": [
+    {"name": "聚飞光电", "code": "300303", "price": 9.50, "profit": "+213%", "weight": "8.6%", "status": "持有", "note": "追踪止损 8.57"},
+    {"name": "紫江企业", "code": "600210", "price": 6.41, "profit": "+26.9%", "weight": "9.2%", "status": "观察", "note": "接近追踪止损启动线"},
+    {"name": "恒瑞医药", "code": "600276", "price": 46.38, "profit": "-8.3%", "weight": "10.5%", "status": "高风险盯防", "note": "止损价 42.985"},
+    {"name": "皖维高新", "code": "600063", "price": 7.96, "profit": "+52.4%", "weight": "6.6%", "status": "持有", "note": "退出线 7.17"},
+    {"name": "东方明珠", "code": "600637", "price": 8.96, "profit": "+15.4%", "weight": "4.7%", "status": "观察", "note": "破 MA20，不加仓"},
+    {"name": "永泰能源", "code": "600157", "price": 1.71, "profit": "+12.9%", "weight": "3.9%", "status": "观察", "note": "接近 MA20"},
+    {"name": "岩山科技", "code": "002195", "price": 7.31, "profit": "零成本", "weight": "2.2%", "status": "持有", "note": "豁免止损止盈"},
+    {"name": "沪深300ETF", "code": "510300", "price": 4.826, "profit": "-2.6%", "weight": "7.3%", "status": "持有", "note": "基准底仓"}
+  ],
+  "watchlist": [
+    {"name": "长电科技", "code": "600584", "price": 75.29, "status": "观察", "note": "趋势修复但距目标区间下限偏高"},
+    {"name": "通富微电", "code": "002156", "price": 64.43, "status": "否决", "note": "刚破 MA20，等重新站稳"},
+    {"name": "中芯国际", "code": "688981", "price": 127.30, "status": "否决", "note": "破 MA20 且距离目标区间较远"}
+  ],
+  "nextPlan": [
+    "优先监控恒瑞医药是否继续接近止损价。",
+    "聚飞光电跌破 8.57 则触发追踪止损。",
+    "全 A 股扫描寻找新的高分右侧机会。",
+    "等待用户补充实盘总资产或收益率，用于 PK 对比。"
+  ]
+}

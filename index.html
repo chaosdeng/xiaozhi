@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>小智手机版</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --ink: #172033;
+      --muted: #6b7280;
+      --line: #dfe5ec;
+      --green: #10845f;
+      --red: #c43c3c;
+      --amber: #ae7206;
+      --blue: #2663ad;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    .app {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 14px 12px 28px;
+    }
+
+    header {
+      padding: 6px 2px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .sub, .muted {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .pill {
+      border: 1px solid #b8e2d2;
+      background: #eaf8f2;
+      color: #0b7554;
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hero {
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1b2a3f 0%, #1b3b4e 50%, #28453b 100%);
+      color: #fff;
+      padding: 16px;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .asset {
+      font-size: 34px;
+      font-weight: 820;
+      line-height: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .hero-metric {
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: 8px;
+    }
+
+    .hero-metric b {
+      display: block;
+      margin-top: 4px;
+      font-size: 15px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 16px 2px 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .row:first-child {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    .name {
+      font-weight: 760;
+      margin-bottom: 3px;
+    }
+
+    .right {
+      text-align: right;
+      min-width: 74px;
+    }
+
+    .right b {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .badge {
+      display: inline-flex;
+      min-height: 22px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 7px;
+      font-size: 12px;
+      font-weight: 760;
+      background: #edf2f7;
+      color: #4b5563;
+      white-space: nowrap;
+    }
+
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .amber { color: var(--amber); }
+    .blue { color: var(--blue); }
+    .risk-high { border-left: 5px solid var(--red); }
+    .risk-medium { border-left: 5px solid var(--amber); }
+
+    .footer {
+      text-align: center;
+      padding: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>小智</h1>
+        <div class="sub">A 股模拟盘 · 手机版</div>
+      </div>
+      <div class="pill" id="sourceStatus">加载中</div>
+    </header>
+
+    <section class="hero">
+      <div class="label">小智模拟盘总资产</div>
+      <div class="asset" id="totalAsset">--</div>
+      <div class="hero-grid">
+        <div class="hero-metric"><span class="label">累计</span><b id="totalReturn">--</b></div>
+        <div class="hero-metric"><span class="label">超额</span><b id="excessReturn">--</b></div>
+        <div class="hero-metric"><span class="label">现金</span><b id="cashPct">--</b></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="name">今日动作</div>
+      <div id="todayAction" class="blue">--</div>
+      <div id="todayReason" class="muted" style="margin-top:6px">--</div>
+    </section>
+
+    <div class="section-title">
+      <h2>风险预警</h2>
+      <span class="muted" id="updatedAt">--</span>
+    </div>
+    <section id="riskList"></section>
+
+    <div class="section-title">
+      <h2>持仓</h2>
+      <span class="muted">现价 / 浮盈 / 动作</span>
+    </div>
+    <section class="card" id="positionList"></section>
+
+    <div class="section-title">
+      <h2>机会池</h2>
+      <span class="muted">起点观察名单</span>
+    </div>
+    <section class="card" id="watchList"></section>
+
+    <div class="section-title">
+      <h2>下一步</h2>
+      <span class="muted">明日计划</span>
+    </div>
+    <section class="card" id="nextPlan"></section>
+
+    <div class="footer">仅为模拟盘复盘，不构成实盘投资建议</div>
+  </main>
+
+  <script>
+    const fmtMoney = (value) => `¥${Number(value).toLocaleString("zh-CN")}`;
+    const pctClass = (value) => String(value).startsWith("-") ? "red" : "green";
+
+    async function loadData() {
+      const response = await fetch("./xiaozhi-data.json", { cache: "no-store" });
+      const data = await response.json();
+      const p = data.portfolio;
+
+      document.querySelector("#sourceStatus").textContent = data.dataSource.status;
+      document.querySelector("#updatedAt").textContent = data.updatedAt;
+      document.querySelector("#totalAsset").textContent = fmtMoney(p.totalAsset);
+      document.querySelector("#totalReturn").textContent = `${p.totalReturnPct}%`;
+      document.querySelector("#totalReturn").className = pctClass(p.totalReturnPct);
+      document.querySelector("#excessReturn").textContent = `+${p.excessReturnPct}%`;
+      document.querySelector("#excessReturn").className = "green";
+      document.querySelector("#cashPct").textContent = `${p.cashPct}%`;
+      document.querySelector("#todayAction").textContent = p.todayAction;
+      document.querySelector("#todayReason").textContent = p.todayReason;
+
+      document.querySelector("#riskList").innerHTML = data.riskAlerts.map((item) => `
+        <article class="card risk-${item.level === "high" ? "high" : "medium"}">
+          <div class="name">${item.title}</div>
+          <div class="muted">${item.detail}</div>
+        </article>
+      `).join("");
+
+      document.querySelector("#positionList").innerHTML = data.positions.map((item) => `
+        <div class="row">
+          <div>
+            <div class="name">${item.name} <span class="muted">${item.code}</span></div>
+            <div class="muted">现价 ${item.price} · ${item.note}</div>
+          </div>
+          <div class="right">
+            <b class="${pctClass(item.profit)}">${item.profit}</b>
+            <span class="badge">${item.status}</span>
+          </div>
+        </div>
+      `).join("");
+
+      document.querySelector("#watchList").innerHTML = data.watchlist.map((item) => `
+        <div class="row">
+          <div>
+            <div class="name">${item.name} <span class="muted">${item.code}</span></div>
+            <div class="muted">现价 ${item.price} · ${item.note}</div>
+          </div>
+          <div class="right"><span class="badge">${item.status}</span></div>
+        </div>
+      `).join("");
+
+      document.querySelector("#nextPlan").innerHTML = data.nextPlan.map((item) => `
+        <div class="row"><div class="muted">${item}</div></div>
+      `).join("");
+    }
+
+    loadData().catch(() => {
+      document.querySelector("#sourceStatus").textContent = "数据加载失败";
+      document.querySelector("#todayReason").textContent = "请确认 xiaozhi-data.json 与页面在同一目录，并通过网页服务访问。";
+    });
+  </script>
+</body>
+</html>
