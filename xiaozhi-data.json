@@ -1,54 +1,79 @@
 {
-  "updatedAt": "2026-06-09 15:40",
+  "updatedAt": "2026-06-11 00:01",
+  "quoteTimestamp": "2026-06-10 16:11:57 +08:00",
+  "tradingDate": "2026-06-10",
   "dataSource": {
     "name": "东方财富公开接口",
-    "status": "已校验可用",
-    "note": "公开源，无正式 SLA"
+    "status": "收盘行情已校验",
+    "note": "八只持仓及三个关键指数均返回 2026-06-10 收盘数据；公开源，无正式 SLA"
+  },
+  "valuationBasis": {
+    "note": "未发生模拟交易。股数按 2026-06-09 页面权重恢复为整手持仓，恢复后的现金占比 47.145%，与原页面 47.2% 四舍五入口径一致。",
+    "cash": 313202
   },
   "portfolio": {
     "name": "小智",
     "initialCapital": 677132,
-    "totalAsset": 664337,
-    "dailyPnl": 2210,
-    "totalReturnPct": -1.89,
-    "benchmarkReturnPct": -2.58,
-    "excessReturnPct": 0.69,
-    "cashPct": 47.2,
-    "marketState": "震荡偏防守",
-    "todayAction": "无操作",
-    "todayReason": "未触发明确买入、卖出或换仓条件；当前优先守住利润、盯住风险、等待更高胜率买点。"
+    "totalAsset": 661732,
+    "dailyPnl": -2605,
+    "totalReturnPct": -2.27,
+    "benchmarkReturnPct": -3.43,
+    "excessReturnPct": 1.16,
+    "cashPct": 47.3,
+    "marketState": "震荡转弱，偏防守",
+    "todayAction": "无模拟成交",
+    "todayReason": "收盘后仅完成估值和风控复核。关键指数全线下跌，但八只持仓均未收于既定硬止损线下；不依据收盘后数据虚构成交，次日按触发条件处理。"
   },
+  "indices": [
+    { "name": "沪深300", "code": "000300", "close": 4748.59, "changePct": -1.11 },
+    { "name": "中证全指", "code": "000985", "close": 6173.63, "changePct": -1.3 },
+    { "name": "创业板指", "code": "399006", "close": 3854.79, "changePct": -2.7 }
+  ],
   "riskAlerts": [
     {
       "level": "high",
-      "title": "恒瑞医药止损风险",
-      "detail": "现价 46.38，浮亏 -8.3%，距止损价 42.985 约 7.9%。"
+      "title": "聚飞光电接近追踪止损",
+      "detail": "收盘 8.89，单日 -6.42%，高于追踪止损 8.57 约 3.7%；次日优先检查是否有效跌破。"
     },
     {
       "level": "medium",
-      "title": "现金比例偏高",
-      "detail": "现金 47.2%，略高于震荡市场目标区间，等待高胜率机会。"
+      "title": "组合风险偏好下降",
+      "detail": "沪深300 -1.11%、中证全指 -1.30%、创业板指 -2.70%；现金 47.3%，继续防守，不追高开新仓。"
+    },
+    {
+      "level": "medium",
+      "title": "恒瑞医药仍需盯防",
+      "detail": "收盘 47.01，浮亏约 -7.0%，高于止损价 42.985 约 9.4%，尚未触发止损。"
     }
   ],
   "positions": [
-    {"name": "聚飞光电", "code": "300303", "price": 9.50, "profit": "+213%", "weight": "8.6%", "status": "持有", "note": "追踪止损 8.57"},
-    {"name": "紫江企业", "code": "600210", "price": 6.41, "profit": "+26.9%", "weight": "9.2%", "status": "观察", "note": "接近追踪止损启动线"},
-    {"name": "恒瑞医药", "code": "600276", "price": 46.38, "profit": "-8.3%", "weight": "10.5%", "status": "高风险盯防", "note": "止损价 42.985"},
-    {"name": "皖维高新", "code": "600063", "price": 7.96, "profit": "+52.4%", "weight": "6.6%", "status": "持有", "note": "退出线 7.17"},
-    {"name": "东方明珠", "code": "600637", "price": 8.96, "profit": "+15.4%", "weight": "4.7%", "status": "观察", "note": "破 MA20，不加仓"},
-    {"name": "永泰能源", "code": "600157", "price": 1.71, "profit": "+12.9%", "weight": "3.9%", "status": "观察", "note": "接近 MA20"},
-    {"name": "岩山科技", "code": "002195", "price": 7.31, "profit": "零成本", "weight": "2.2%", "status": "持有", "note": "豁免止损止盈"},
-    {"name": "沪深300ETF", "code": "510300", "price": 4.826, "profit": "-2.6%", "weight": "7.3%", "status": "持有", "note": "基准底仓"}
+    { "name": "聚飞光电", "code": "300303", "quantity": 6000, "price": 8.89, "dayChangePct": -6.42, "profit": "+192.9%", "weight": "8.1%", "status": "高风险盯防", "note": "追踪止损 8.57，缓冲约 3.7%" },
+    { "name": "紫江企业", "code": "600210", "quantity": 9500, "price": 6.44, "dayChangePct": 0.47, "profit": "+27.5%", "weight": "9.2%", "status": "持有", "note": "收盘小幅上涨，未触发退出" },
+    { "name": "恒瑞医药", "code": "600276", "quantity": 1500, "price": 47.01, "dayChangePct": 1.36, "profit": "-7.0%", "weight": "10.7%", "status": "风险盯防", "note": "止损价 42.985，尚未触发" },
+    { "name": "皖维高新", "code": "600063", "quantity": 5500, "price": 8.41, "dayChangePct": 5.65, "profit": "+61.0%", "weight": "7.0%", "status": "持有", "note": "强势收盘，退出线 7.17" },
+    { "name": "东方明珠", "code": "600637", "quantity": 3500, "price": 8.74, "dayChangePct": -2.46, "profit": "+12.6%", "weight": "4.6%", "status": "观察", "note": "弱势收盘，不加仓" },
+    { "name": "永泰能源", "code": "600157", "quantity": 15000, "price": 1.65, "dayChangePct": -3.51, "profit": "+8.9%", "weight": "3.7%", "status": "观察", "note": "弱势收盘，次日复核趋势" },
+    { "name": "岩山科技", "code": "002195", "quantity": 2000, "price": 7.03, "dayChangePct": -3.83, "profit": "零成本", "weight": "2.1%", "status": "持有", "note": "零成本豁免仓，控制回撤" },
+    { "name": "沪深300ETF", "code": "510300", "quantity": 10000, "price": 4.784, "dayChangePct": -0.87, "profit": "-3.4%", "weight": "7.2%", "status": "持有", "note": "基准底仓，不主动追跌" }
   ],
   "watchlist": [
-    {"name": "长电科技", "code": "600584", "price": 75.29, "status": "观察", "note": "趋势修复但距目标区间下限偏高"},
-    {"name": "通富微电", "code": "002156", "price": 64.43, "status": "否决", "note": "刚破 MA20，等重新站稳"},
-    {"name": "中芯国际", "code": "688981", "price": 127.30, "status": "否决", "note": "破 MA20 且距离目标区间较远"}
+    { "name": "长电科技", "code": "600584", "price": 75.29, "status": "未复核", "note": "保留 2026-06-09 观察记录；本次优先完成持仓收盘复核，未做候选扫描" },
+    { "name": "通富微电", "code": "002156", "price": 64.43, "status": "未复核", "note": "保留 2026-06-09 观察记录；不使用旧价格产生新交易" },
+    { "name": "中芯国际", "code": "688981", "price": 127.3, "status": "未复核", "note": "保留 2026-06-09 观察记录；不使用旧价格产生新交易" }
   ],
   "nextPlan": [
-    "优先监控恒瑞医药是否继续接近止损价。",
-    "聚飞光电跌破 8.57 则触发追踪止损。",
-    "全 A 股扫描寻找新的高分右侧机会。",
-    "等待用户补充实盘总资产或收益率，用于 PK 对比。"
-  ]
+    "开盘后优先监控聚飞光电 8.57：若有效跌破，按追踪止损规则模拟退出；未跌破则不因单日大跌恐慌卖出。",
+    "恒瑞医药继续以 42.985 为硬止损，不补亏损仓。",
+    "东方明珠、永泰能源若继续弱于市场并破坏趋势，进入减仓复核；皖维高新保护利润但不追涨加仓。",
+    "市场广度和均线数据未充分核验前，不把市场正式升级为弱市，也不开新仓。",
+    "候选扫描延后到必需的组合结果、校验、发布和归档完成之后。"
+  ],
+  "userPortfolio": {
+    "totalAsset": 680003.27,
+    "returnPct": 0.42,
+    "assetGapVsXiaozhi": 18271.27,
+    "returnGapVsXiaozhiPct": 2.69,
+    "leader": "用户实盘",
+    "note": "按用户最近一次补充值，用户实盘暂时领先小智 18,271.27 元，约 2.69 个百分点。"
+  }
 }
