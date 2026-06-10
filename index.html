@@ -143,7 +143,7 @@
       <div class="top">
         <div>
           <h1>小智</h1>
-          <div class="sub">A 股模拟盘 · 手机版完整页</div>
+          <div class="sub">A 股模拟盘 · 2026-06-10 收盘复核</div>
         </div>
         <div class="pill" id="sourceStatus">加载中</div>
       </div>
@@ -183,6 +183,9 @@
         <div id="todayReason" class="muted">--</div>
       </section>
 
+      <h2>关键指数</h2>
+      <section class="card" id="indexList"></section>
+
       <h2>风险预警 <span class="muted" id="updatedAt">--</span></h2>
       <section id="riskList"></section>
 
@@ -193,8 +196,8 @@
           <div class="right"><b class="green" id="pkBenchmark">--</b><span class="badge">领先</span></div>
         </div>
         <div class="row">
-          <div><div class="name">小智 vs 用户实盘</div><div class="muted">等待用户补充实盘总资产或收益率</div></div>
-          <div class="right"><b>待定</b><span class="badge">缺数据</span></div>
+          <div><div class="name">小智 vs 用户实盘</div><div class="muted" id="userPkNote">--</div></div>
+          <div class="right"><b id="userPkValue">--</b><span class="badge" id="userPkLeader">--</span></div>
         </div>
       </section>
     </section>
@@ -239,7 +242,7 @@
       <section class="card">
         <div class="row"><div><div class="name">资料库</div><div class="muted">D:\模拟盘 已建立</div></div><span class="badge">可用</span></div>
         <div class="row"><div><div class="name">每日功课</div><div class="muted">10:30、13:30、15:40 定时沉淀</div></div><span class="badge">已设置</span></div>
-        <div class="row"><div><div class="name">手机版数据</div><div class="muted">xiaozhi-data.json 每日更新后同步到 GitHub Pages</div></div><span class="badge">待自动化</span></div>
+        <div class="row"><div><div class="name">手机版数据</div><div class="muted">xiaozhi-data.json 每日更新后同步到 GitHub Pages</div></div><span class="badge">自动更新</span></div>
       </section>
     </section>
 
@@ -280,6 +283,14 @@
       document.querySelector("#todayAction").textContent = p.todayAction;
       document.querySelector("#todayReason").textContent = p.todayReason;
       document.querySelector("#pkBenchmark").textContent = `+${p.excessReturnPct}%`;
+      if (data.userPortfolio) {
+        const u = data.userPortfolio;
+        document.querySelector("#userPkNote").textContent =
+          `用户总资产 ${fmtMoney(u.totalAsset)}，收益 ${u.returnPct}%；较小智多 ${fmtMoney(u.assetGapVsXiaozhi)}。`;
+        document.querySelector("#userPkValue").textContent = `+${u.returnGapVsXiaozhiPct}%`;
+        document.querySelector("#userPkValue").className = "red";
+        document.querySelector("#userPkLeader").textContent = u.leader;
+      }
 
       document.querySelector("#riskList").innerHTML = data.riskAlerts.map((item) => `
         <article class="card risk-${item.level === "high" ? "high" : "medium"}">
@@ -288,11 +299,18 @@
         </article>
       `).join("");
 
+      document.querySelector("#indexList").innerHTML = data.indices.map((item) => `
+        <div class="row">
+          <div><div class="name">${item.name}</div><div class="muted">${item.code} · 收盘 ${item.close}</div></div>
+          <div class="right"><b class="${pctClass(item.changePct)}">${item.changePct}%</b></div>
+        </div>
+      `).join("");
+
       document.querySelector("#positionList").innerHTML = data.positions.map((item) => `
         <div class="row">
           <div>
             <div class="name">${item.name} <span class="muted">${item.code}</span></div>
-            <div class="muted">现价 ${item.price} · 仓位 ${item.weight} · ${item.note}</div>
+            <div class="muted">收盘 ${item.price} · 当日 ${item.dayChangePct}% · ${item.quantity} 股 · 仓位 ${item.weight} · ${item.note}</div>
           </div>
           <div class="right">
             <b class="${pctClass(item.profit)}">${item.profit}</b>
