@@ -56,7 +56,7 @@
     }
     .tabs {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 6px;
     }
     .tab {
@@ -130,6 +130,17 @@
     .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .kv .card { margin-bottom: 0; }
     .big { font-size: 20px; font-weight: 820; margin-top: 5px; }
+    .chart-card { padding: 12px 8px 8px; overflow: hidden; }
+    .chart-head, .legend { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+    .legend { justify-content: flex-start; margin: 8px 4px 2px; font-size: 12px; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 5px; }
+    .legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+    .chart-wrap { width: 100%; aspect-ratio: 16 / 9; min-height: 210px; }
+    .chart-wrap svg { width: 100%; height: 100%; display: block; }
+    .history-date { font-variant-numeric: tabular-nums; font-weight: 800; }
+    .history-values { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+    .history-value { background: #f7f9fc; border: 1px solid var(--line); border-radius: 7px; padding: 8px; }
+    .history-value b { display: block; margin-top: 3px; font-size: 14px; }
     .footer { text-align: center; padding: 12px 0 0; color: var(--muted); font-size: 12px; }
     @media (max-width: 390px) {
       .tabs { grid-template-columns: repeat(2, 1fr); }
@@ -143,7 +154,7 @@
       <div class="top">
         <div>
           <h1>小智</h1>
-          <div class="sub">A 股模拟盘 · 2026-06-10 收盘复核</div>
+          <div class="sub">A 股模拟盘 · 2026-06-11 13:30 午后复核</div>
         </div>
         <div class="pill" id="sourceStatus">加载中</div>
       </div>
@@ -151,6 +162,7 @@
         <button class="tab active" data-tab="overview">总览</button>
         <button class="tab" data-tab="positions">持仓</button>
         <button class="tab" data-tab="opps">机会</button>
+        <button class="tab" data-tab="history">历史</button>
         <button class="tab" data-tab="strategy">策略</button>
       </nav>
     </header>
@@ -220,10 +232,29 @@
       <section class="card" id="nextPlan"></section>
     </section>
 
+    <section class="view" id="history">
+      <h2>资金曲线</h2>
+      <section class="card chart-card">
+        <div class="chart-head">
+          <div>
+            <div class="name">小智 vs 用户实盘</div>
+            <div class="muted">仅连接已实际记录的资产数据</div>
+          </div>
+        </div>
+        <div class="legend">
+          <span><i style="background:#2663ad"></i>小智</span>
+          <span><i style="background:#c43c3c"></i>用户实盘</span>
+        </div>
+        <div class="chart-wrap" id="assetChart"></div>
+      </section>
+      <h2>历史记录</h2>
+      <section id="historyList"></section>
+    </section>
+
     <section class="view" id="strategy">
       <h2>当前策略参数</h2>
       <section class="card">
-        <div class="row"><div><div class="name">主框架</div><div class="muted">大盘择时 + 板块轮动 + 个股右侧突破 + 波动率仓位</div></div><span class="badge">v8.2</span></div>
+        <div class="row"><div><div class="name">主框架</div><div class="muted">大盘择时 + 板块轮动 + 个股右侧突破 + 波动率仓位</div></div><span class="badge">v8.3</span></div>
         <div class="row"><div><div class="name">交易风格</div><div class="muted">右侧为主，极少数高胜率场景小仓左侧试探</div></div><span class="badge">动态</span></div>
         <div class="row"><div><div class="name">行情源</div><div class="muted" id="sourceNote">--</div></div><span class="badge">已接入</span></div>
         <div class="row"><div><div class="name">阶段检查</div><div class="muted">2026-09-03 只做阶段 PK，不默认清仓</div></div><span class="badge">长期</span></div>
@@ -251,6 +282,7 @@
 
   <script>
     const fmtMoney = (value) => `¥${Number(value).toLocaleString("zh-CN")}`;
+    const fmtShortMoney = (value) => `${(Number(value) / 10000).toFixed(1)}万`;
     const pctClass = (value) => String(value).startsWith("-") || Number(value) < 0 ? "red" : "green";
 
     function bindTabs() {
@@ -262,6 +294,59 @@
           document.querySelector(`#${button.dataset.tab}`).classList.add("active");
         });
       });
+    }
+
+    function renderAssetHistory(history) {
+      const chart = document.querySelector("#assetChart");
+      if (!history?.length) {
+        chart.innerHTML = '<div class="muted">暂无历史数据</div>';
+        return;
+      }
+      const values = history.flatMap((item) => [item.xiaozhi, item.user]).filter(Number.isFinite);
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const pad = Math.max((max - min) * 0.18, 1500);
+      const low = min - pad;
+      const high = max + pad;
+      const width = 560;
+      const height = 300;
+      const left = 54;
+      const right = 14;
+      const top = 18;
+      const bottom = 42;
+      const x = (index) => left + index * ((width - left - right) / Math.max(history.length - 1, 1));
+      const y = (value) => top + (high - value) * ((height - top - bottom) / (high - low));
+      const points = (key) => history
+        .map((item, index) => Number.isFinite(item[key]) ? `${x(index)},${y(item[key])}` : null)
+        .filter(Boolean)
+        .join(" ");
+      const dots = (key, color) => history.map((item, index) => Number.isFinite(item[key])
+        ? `<circle cx="${x(index)}" cy="${y(item[key])}" r="4" fill="${color}" stroke="#fff" stroke-width="2"><title>${item.date} ${key === "xiaozhi" ? "小智" : "用户"} ${fmtMoney(item[key])}</title></circle>`
+        : "").join("");
+      const grid = [0, 0.5, 1].map((ratio) => {
+        const value = high - (high - low) * ratio;
+        const gy = top + (height - top - bottom) * ratio;
+        return `<line x1="${left}" y1="${gy}" x2="${width - right}" y2="${gy}" stroke="#dfe5ec" stroke-dasharray="4 5"/><text x="${left - 8}" y="${gy + 4}" text-anchor="end" font-size="11" fill="#667085">${fmtShortMoney(value)}</text>`;
+      }).join("");
+      const labels = history.map((item, index) =>
+        `<text x="${x(index)}" y="${height - 16}" text-anchor="middle" font-size="11" fill="#667085">${item.date.slice(5)}</text>`
+      ).join("");
+      chart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="小智与用户实盘资金曲线">
+        ${grid}
+        <polyline points="${points("xiaozhi")}" fill="none" stroke="#2663ad" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        <polyline points="${points("user")}" fill="none" stroke="#c43c3c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        ${dots("xiaozhi", "#2663ad")}${dots("user", "#c43c3c")}${labels}
+      </svg>`;
+      document.querySelector("#historyList").innerHTML = [...history].reverse().map((item) => `
+        <article class="card">
+          <div class="history-date">${item.date}</div>
+          <div class="history-values">
+            <div class="history-value"><span class="muted">小智</span><b class="blue">${Number.isFinite(item.xiaozhi) ? fmtMoney(item.xiaozhi) : "未记录"}</b></div>
+            <div class="history-value"><span class="muted">用户实盘</span><b class="red">${Number.isFinite(item.user) ? fmtMoney(item.user) : "未提供"}</b></div>
+          </div>
+          <div class="muted" style="margin-top:8px">${item.action}</div>
+        </article>
+      `).join("");
     }
 
     async function loadData() {
@@ -291,6 +376,7 @@
         document.querySelector("#userPkValue").className = "red";
         document.querySelector("#userPkLeader").textContent = u.leader;
       }
+      renderAssetHistory(data.assetHistory);
 
       document.querySelector("#riskList").innerHTML = data.riskAlerts.map((item) => `
         <article class="card risk-${item.level === "high" ? "high" : "medium"}">
@@ -301,7 +387,7 @@
 
       document.querySelector("#indexList").innerHTML = data.indices.map((item) => `
         <div class="row">
-          <div><div class="name">${item.name}</div><div class="muted">${item.code} · 收盘 ${item.close}</div></div>
+          <div><div class="name">${item.name}</div><div class="muted">${item.code} · 现价 ${item.close}</div></div>
           <div class="right"><b class="${pctClass(item.changePct)}">${item.changePct}%</b></div>
         </div>
       `).join("");
@@ -310,7 +396,7 @@
         <div class="row">
           <div>
             <div class="name">${item.name} <span class="muted">${item.code}</span></div>
-            <div class="muted">收盘 ${item.price} · 当日 ${item.dayChangePct}% · ${item.quantity} 股 · 仓位 ${item.weight} · ${item.note}</div>
+            <div class="muted">现价 ${item.price} · 当日 ${item.dayChangePct}% · ${item.quantity} 股 · 仓位 ${item.weight} · ${item.note}</div>
           </div>
           <div class="right">
             <b class="${pctClass(item.profit)}">${item.profit}</b>
