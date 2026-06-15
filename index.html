@@ -154,7 +154,7 @@
       <div class="top">
         <div>
           <h1>小智</h1>
-          <div class="sub">A 股模拟盘 · 2026-06-15 10:30 盘中风控</div>
+          <div class="sub">A 股模拟盘 · 2026-06-15 13:30 午后复核</div>
         </div>
         <div class="pill" id="sourceStatus">加载中</div>
       </div>
@@ -205,7 +205,7 @@
       <section class="card">
         <div class="row">
           <div><div class="name">小智 vs 沪深300</div><div class="muted">当前相对基准超额收益</div></div>
-          <div class="right"><b class="green" id="pkBenchmark">--</b><span class="badge">领先</span></div>
+          <div class="right"><b id="pkBenchmark">--</b><span class="badge">落后</span></div>
         </div>
         <div class="row">
           <div><div class="name">小智 vs 用户实盘</div><div class="muted" id="userPkNote">--</div></div>
@@ -360,14 +360,15 @@
       document.querySelector("#totalAsset").textContent = fmtMoney(p.totalAsset);
       document.querySelector("#totalReturn").textContent = `${p.totalReturnPct}%`;
       document.querySelector("#totalReturn").className = pctClass(p.totalReturnPct);
-      document.querySelector("#excessReturn").textContent = `+${p.excessReturnPct}%`;
-      document.querySelector("#excessReturn").className = "green";
+      document.querySelector("#excessReturn").textContent = `${p.excessReturnPct}%`;
+      document.querySelector("#excessReturn").className = pctClass(p.excessReturnPct);
       document.querySelector("#cashPct").textContent = `${p.cashPct}%`;
       document.querySelector("#marketState").textContent = p.marketState;
       document.querySelector("#dailyPnl").textContent = fmtMoney(p.dailyPnl);
       document.querySelector("#todayAction").textContent = p.todayAction;
       document.querySelector("#todayReason").textContent = p.todayReason;
-      document.querySelector("#pkBenchmark").textContent = `+${p.excessReturnPct}%`;
+      document.querySelector("#pkBenchmark").textContent = `${p.excessReturnPct}%`;
+      document.querySelector("#pkBenchmark").className = pctClass(p.excessReturnPct);
       if (data.userPortfolio) {
         const u = data.userPortfolio;
         document.querySelector("#userPkNote").textContent =
