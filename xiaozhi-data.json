@@ -1,191 +1,191 @@
 {
-  "updatedAt": "2026-06-15 15:46",
-  "quoteTimestamp": "2026-06-15 15:42:51 +08:00",
-  "tradingDate": "2026-06-15",
+  "updatedAt": "2026-06-16 21:16",
+  "quoteTimestamp": "2026-06-16 16:14:57 +08:00",
+  "tradingDate": "2026-06-16",
   "dataSource": {
-    "name": "东方财富公开接口",
-    "status": "正式收盘报价、报价时间与交易日已核验",
-    "note": "七只当前持仓、已退出的东方明珠和三个关键指数均取得 2026-06-15 正式收盘报价，报价时间集中在 15:41:07-15:42:51 +08:00。14:54 已核验持仓与关键指数当日日 K 最新日期为 2026-06-15；收盘后日 K 批量复核遇到东方财富连接中断，因此不把该次失败描述为成功。正式收盘价相对 14:54 变化很小，不改变已核验的 MA20/MA60 位置、止损判断或市场状态。公开源无正式 SLA。"
+    "name": "Tencent public quote API; Eastmoney fallback unavailable in this run",
+    "status": "Required holdings, legacy reference, and key indices returned timestamped 2026-06-16 post-close quotes; daily K-line trading date verified",
+    "note": "Seven live holdings, exited 600637 reference, and three key indices returned 2026-06-16 daily K-lines. Latest required quote timestamp is 2026-06-16 16:14:57 +08:00. Tencent market status reported SH/SZ close. Eastmoney push2/push2his connections were closed by the remote endpoint and were not counted as successful. Public sources have no formal SLA."
   },
   "valuationBasis": {
-    "note": "按 2026-06-15 正式收盘价估值，沿用 2026-06-12 收盘后确认的七只持仓和现金。任务所称八只持仓是东方明珠退出前口径；东方明珠已于 2026-06-12 10:30 模拟退出，不计入本次持仓估值。聚飞光电最低 8.60，未破 8.57；皖维高新最低 7.42，未破 7.17。收盘复盘无新增模拟成交，不倒推成交价，不计新增交易费用。",
-    "cash": 382129
+    "cash": 382129,
+    "note": "Valued with 2026-06-16 post-close quotes, using the seven live holdings and cash confirmed after the 2026-06-12 close. The requested eight-holding wording is treated as the pre-exit scope; 600637 was quoted as a legacy reference only and is excluded from NAV. 300303 low 8.91 stayed above 8.57; 600063 low 7.76 stayed above 7.17. No new simulated fill was created."
   },
   "portfolio": {
-    "name": "小智",
+    "name": "??",
     "initialCapital": 677132,
-    "totalAsset": 663343,
-    "dailyPnl": 4502,
-    "totalReturnPct": -2.04,
-    "benchmarkReturnPct": -0.71,
-    "excessReturnPct": -1.33,
-    "cashPct": 57.6,
-    "marketState": "强市场，指数、广度与成交确认，但收盘不追高",
-    "todayAction": "15:40 收盘复盘无新增模拟成交；继续持有 57.6% 现金",
-    "todayReason": "正式收盘沪深300、中证全指、创业板指分别上涨 2.39%、2.97%、5.30%，收于 4891.71、6380.16、4033.53；14:54 已确认三项指数均高于 MA20/MA60，市场上涨占比约 68.9%，中证全指成交额约为此前 20 日均值的 100.4%，强市场条件成立。聚飞光电 8.57 硬风控线、皖维高新 7.17 利润保护线及其余持仓硬止损均未触发。组合现金仍高达 57.6%，但收盘后没有成交窗口，且不为提高仓位倒推买入；本轮不新增模拟成交。"
+    "totalAsset": 667314,
+    "dailyPnl": 3971,
+    "totalReturnPct": -1.45,
+    "benchmarkReturnPct": -0.89,
+    "excessReturnPct": -0.56,
+    "cashPct": 57.3,
+    "marketState": "Index trend positive but breadth not fully rescanned; execute as constructive range market, no chase buying",
+    "todayAction": "15:40 close review: no new simulated trade; keep seven live holdings and 57.3% cash",
+    "todayReason": "CSI 300, CSI All Share, and ChiNext closed at 4884.23, 6421.24, and 4102.94, with changes of -0.15%, +0.64%, and +1.72%. All three key indices were above MA20 and MA60 based on Tencent daily K-lines. Because this run prioritized portfolio valuation and did not complete a full-market breadth scan, the regime is treated conservatively as constructive range rather than full strong-market permission. Holding risk lines were not triggered; no trade is backfilled after the close."
   },
   "indices": [
     {
-      "name": "沪深300",
+      "name": "CSI 300",
       "code": "000300",
-      "close": 4891.71,
-      "changePct": 2.39
+      "close": 4884.23,
+      "changePct": -0.15
     },
     {
-      "name": "中证全指",
+      "name": "CSI All Share",
       "code": "000985",
-      "close": 6380.16,
-      "changePct": 2.97
+      "close": 6421.24,
+      "changePct": 0.64
     },
     {
-      "name": "创业板指",
+      "name": "ChiNext Index",
       "code": "399006",
-      "close": 4033.53,
-      "changePct": 5.3
+      "close": 4102.94,
+      "changePct": 1.72
     }
   ],
   "riskAlerts": [
     {
       "level": "high",
-      "title": "聚飞光电仍在 MA20/MA60 下方，8.57 风控线未触发",
-      "detail": "聚飞光电收 8.97 元，盘中低点 8.60，高于 8.57 风控线；仍低于 14:54 已核验的 MA20 9.256 和 MA60 9.491。维持 4,000 股，不加仓；下一交易日有效跌破时优先退出。"
+      "title": "300303 recovered, but 8.57 remains the hard risk line",
+      "detail": "Close 9.31, +3.79%; intraday low 8.91 stayed above 8.57. Hold 4,000 shares and do not chase-add after the rebound."
     },
     {
       "level": "high",
-      "title": "皖维高新冲高回落，继续执行 7.17 利润保护",
-      "detail": "皖维高新收 7.80 元、涨 5.26%，盘中高点 8.00、低点 7.42，未触发 7.17 退出线；仍高于已核验的 MA20 7.121 和 MA60 6.949。继续持有，不在强反弹后追涨加仓。"
+      "title": "600063 stayed strong; keep 7.17 profit-protection line",
+      "detail": "Close 8.25, +5.77%; intraday low 7.76 stayed above 7.17. Keep the position and manage profit with the protection line."
     },
     {
       "level": "medium",
-      "title": "组合仓位偏防守，弱势持仓未形成回补条件",
-      "detail": "现金比例 57.6%，高于强市场 15%-25%目标，但紫江企业仅略高于 MA20，恒瑞医药、永泰能源和岩山科技仍低于 MA20，聚飞光电仍低于 MA20/MA60。收盘后不倒推交易；下一交易日只在右侧条件成立时逐步提高仓位。"
+      "title": "Portfolio remains defensive despite stronger indices",
+      "detail": "Cash is 382,129 yuan, or 57.3% of NAV. 600276, 600157, and 002195 are not confirmed right-side leaders, so no averaging down."
     }
   ],
   "positions": [
     {
-      "name": "聚飞光电",
+      "name": "Jufei Optoelectronics",
       "code": "300303",
       "quantity": 4000,
-      "price": 8.97,
-      "dayChangePct": 4.06,
-      "profit": "+195.7%",
-      "weight": "5.4%",
-      "status": "趋势线下，优先风控",
-      "note": "现价仍低于 MA20 9.256 和 MA60 9.491；盘中低点 8.60 未破 8.57，不加仓"
+      "price": 9.31,
+      "dayChangePct": 3.79,
+      "profit": "+207.0%",
+      "weight": "5.6%",
+      "status": "Repair watch",
+      "note": "Above MA20 9.210; below MA60 9.487; 8.57 hard risk line not triggered"
     },
     {
-      "name": "紫江企业",
+      "name": "Zijiang Enterprise",
       "code": "600210",
       "quantity": 8500,
-      "price": 6.64,
-      "dayChangePct": 0.61,
-      "profit": "+31.5%",
+      "price": 6.71,
+      "dayChangePct": 1.05,
+      "profit": "+32.9%",
       "weight": "8.5%",
-      "status": "减仓后持有",
-      "note": "略高于 MA20 6.604、仍低于 MA60 6.816；修复不足，不回补"
+      "status": "Hold after reduction",
+      "note": "Above MA20 and below MA60; no add until trend is steadier"
     },
     {
-      "name": "恒瑞医药",
+      "name": "Hengrui Medicine",
       "code": "600276",
       "quantity": 1300,
-      "price": 47.88,
-      "dayChangePct": -1.26,
-      "profit": "-5.4%",
-      "weight": "9.4%",
-      "status": "弱势持有",
-      "note": "低于 MA20 48.577 和 MA60 52.955；硬止损 42.985 未触发"
+      "price": 47.35,
+      "dayChangePct": -1.11,
+      "profit": "-6.4%",
+      "weight": "9.2%",
+      "status": "Weak hold",
+      "note": "Below MA20/MA60; hard stop not triggered, but no averaging down"
     },
     {
-      "name": "皖维高新",
+      "name": "Wanwei High-tech",
       "code": "600063",
       "quantity": 5500,
-      "price": 7.8,
-      "dayChangePct": 5.26,
-      "profit": "+49.2%",
-      "weight": "6.5%",
-      "status": "利润保护持有",
-      "note": "盘中低点 7.42 高于 7.17 退出线；高于 MA20/MA60，继续利润保护"
+      "price": 8.25,
+      "dayChangePct": 5.77,
+      "profit": "+57.8%",
+      "weight": "6.8%",
+      "status": "Profit-protection hold",
+      "note": "Above MA20 7.226 and MA60 6.969; 7.17 profit line not triggered"
     },
     {
-      "name": "永泰能源",
+      "name": "Yongtai Energy",
       "code": "600157",
       "quantity": 12000,
       "price": 1.7,
       "dayChangePct": 0.0,
       "profit": "+12.3%",
       "weight": "3.1%",
-      "status": "治理风险观察",
-      "note": "仍低于 MA20 1.762 和 MA60 1.776；治理风险观察，不加仓"
+      "status": "Governance-risk watch",
+      "note": "Still a low-priced governance-risk watch; no add"
     },
     {
-      "name": "岩山科技",
+      "name": "Yanshan Technology",
       "code": "002195",
       "quantity": 2000,
-      "price": 7.08,
-      "dayChangePct": 2.91,
-      "profit": "零成本",
-      "weight": "2.1%",
-      "status": "弱势观察",
-      "note": "仍低于 MA20 7.636 和 MA60 8.571；按零成本豁免仓管理"
+      "price": 7.24,
+      "dayChangePct": 2.26,
+      "profit": "???",
+      "weight": "2.2%",
+      "status": "Weak watch",
+      "note": "Repair bounce but not a core right-side leader; zero-cost exemption management"
     },
     {
-      "name": "沪深300ETF",
+      "name": "CSI 300 ETF",
       "code": "510300",
       "quantity": 10000,
-      "price": 4.919,
-      "dayChangePct": 2.1,
-      "profit": "-0.7%",
+      "price": 4.91,
+      "dayChangePct": -0.18,
+      "profit": "-0.9%",
       "weight": "7.4%",
-      "status": "持有",
-      "note": "高于 MA20 4.874 和 MA60 4.757；作为 ETF 豁免底仓持有，本次不追涨"
+      "status": "ETF core hold",
+      "note": "ETF base holding; do not chase after close"
     }
   ],
   "watchlist": [
     {
-      "name": "鼎龙股份",
+      "name": "Dinglong",
       "code": "300054",
-      "price": 85.59,
-      "status": "A 类条件候选，禁止追高",
-      "note": "涨 8.36%，高于 MA20 73.168 和 MA60 61.199，趋势最强但尾盘接近日内高位。仅在后续缩量回踩关键位、板块强度延续且评分仍不低于 80 时重评；当前不买。"
+      "price": 84.5,
+      "status": "Too extended; no chase",
+      "note": "Limited candidate check only. Close 84.50, -1.25%; still far above MA20/MA60. Wait for a controlled pullback."
     },
     {
-      "name": "中芯国际",
+      "name": "SMIC",
       "code": "688981",
-      "price": 130.21,
-      "status": "B 类条件候选",
-      "note": "涨 4.27%，高于 MA60 115.945 但仍低于 MA20 133.722。需先收复 MA20，随后回踩不破并重新放量转强，才具备 B 类执行条件。"
+      "price": 130.14,
+      "status": "Below MA20; wait",
+      "note": "Limited candidate check only. Close 130.14, -0.29%; below MA20 134.30 and above MA60. Wait for MA20 recovery."
     },
     {
-      "name": "长电科技",
+      "name": "JCET",
       "code": "600584",
-      "price": 74.4,
-      "status": "B 类条件候选",
-      "note": "涨 7.95%，高于 MA60 55.178 但仍低于 MA20 75.492。尾盘接近日内高点仍未收复 MA20，不以急拉代替确认；当前不换仓。"
+      "price": 76.93,
+      "status": "Right-side candidate; confirm next day",
+      "note": "Limited candidate check only. Close 76.93, +3.51%; slightly above MA20 76.29 and above MA60. Needs next-day confirmation."
     },
     {
-      "name": "嘉元科技",
+      "name": "Jiayuan Technology",
       "code": "688388",
-      "price": 66.68,
-      "status": "过热排除，非 C 类",
-      "note": "涨 15.22%，高于 MA20 48.169 和 MA60 46.475，但触发过热和追高过滤。C 类只用于接近长期支撑的低位试探，本标的不符合，禁止新开模拟仓。"
+      "price": 70.9,
+      "status": "Too extended; no chase",
+      "note": "Limited candidate check only. Close 70.90, +6.15%; far above MA20/MA60. No chase."
     }
   ],
   "nextPlan": [
-    "市场确认：三项关键指数正式收盘均高于 14:54 已核验的 MA20/MA60，广度约 68.9%，成交额约为此前 20 日均值的 100.4%；下一交易日按强市场框架执行，但不追高。",
-    "持仓风控：继续盯防聚飞光电 8.57、皖维高新 7.17；有效跌破时按流动性执行退出，未跌破不情绪化卖出。",
-    "仓位计划：现金 57.6% 明显高于强市场目标。只有指数强势延续、板块与个股右侧条件同时成立时，才分批把现金降向 30%-45%；单笔先控制在总资产 4%-8%。",
-    "弱势持仓：恒瑞医药、永泰能源和岩山科技未收复 MA20 前不加仓；紫江企业需进一步站稳 MA20并收复 MA60；聚飞光电优先风控，不做摊平。",
-    "有限候选：沿用 14:54 已核验的四只观察标的，不进行阻塞组合结果的全市场扫描。鼎龙股份、嘉元科技涨幅过大不追；中芯国际和长电科技需先收复各自 MA20，再等待回踩确认。",
-    "用户 2026-06-15 未报告资产值，assetHistory 保持 null，不沿用 2026-06-11 数值。"
+    "Market check: key-index daily K-lines are verified for 2026-06-16 and above MA20/MA60; breadth was not fully rescanned, so execute conservatively.",
+    "Holding risk: watch 300303 at 8.57 and 600063 at 7.17; exit/reduce only on valid breaks, not on emotion.",
+    "Position plan: cash is 57.3%; reduce cash only if index, sector, and individual right-side signals align, with first tranche at 4%-8% of NAV.",
+    "Weak holdings: do not add to 600276, 600157, or 002195 before a clearer right-side recovery.",
+    "Limited candidates: only the four existing candidates were checked; no full-market scan was performed.",
+    "User did not report a 2026-06-16 asset value; assetHistory.user remains null and the 2026-06-11 value is not carried forward."
   ],
   "userPortfolio": {
     "asOf": "2026-06-11",
     "totalAsset": 668992.58,
     "returnPct": -1.2,
-    "assetGapVsXiaozhi": 5649.58,
-    "returnGapVsXiaozhiPct": 0.84,
-    "leader": "用户实盘",
-    "note": "用户实盘最新报告仍为 2026-06-11 的 668,992.58 元、-1.20%；未收到 2026-06-15 新值，不作为当日新报告。按小智正式收盘估值，用户最新报告值高 5,649.58 元。"
+    "assetGapVsXiaozhi": 1678.58,
+    "returnGapVsXiaozhiPct": 0.25,
+    "leader": "User live account",
+    "note": "Latest user report remains 668,992.58 yuan as of 2026-06-11, return -1.20%. No 2026-06-16 user value was reported, so it is not treated as a new daily report."
   },
   "assetHistory": [
     {
@@ -235,6 +235,14 @@
       "xiaozhiReturnPct": -2.04,
       "userReturnPct": null,
       "action": "正式收盘估值；七只当前持仓止损、利润保护和趋势退出均未触发，无新增模拟成交；用户未报告"
+    },
+    {
+      "date": "2026-06-16",
+      "xiaozhi": 667314,
+      "user": null,
+      "xiaozhiReturnPct": -1.45,
+      "userReturnPct": null,
+      "action": "Close valuation; no live holding risk line triggered; no new simulated trade; user not reported"
     }
   ]
 }
