@@ -1,64 +1,69 @@
 {
-  "updatedAt": "2026-06-17 10:37",
-  "quoteTimestamp": "2026-06-17 10:37:10 +08:00",
+  "updatedAt": "2026-06-17 13:37",
+  "quoteTimestamp": "2026-06-17 13:37:03 +08:00",
   "tradingDate": "2026-06-17",
   "dataSource": {
-    "name": "Tencent public quote API and Tencent public K-line API; Eastmoney fallback unavailable in this run",
-    "status": "Tencent live quotes and Tencent daily K-lines verified for trading date 2026-06-17; Eastmoney historical endpoint unavailable in this run.",
-    "note": "All seven live holdings, three key indices, and four existing candidates returned timestamped 2026-06-17 intraday quotes. Tencent K-lines latest date also verified as 2026-06-17. Public sources have no formal SLA."
+    "name": "Tencent public quote API and Tencent public K-line API; Eastmoney breadth check attempted but unavailable",
+    "status": "Tencent live quotes and daily K-lines verified for trading date 2026-06-17 at 13:37 Beijing time; Eastmoney breadth failed with SSL handshake timeout.",
+    "note": "All seven live holdings, three key indices, and A/B/C watch candidates returned timestamped 2026-06-17 intraday quotes. Tencent K-lines latest date also verified as 2026-06-17. Public sources have no formal SLA; full-market breadth was not treated as verified."
   },
   "valuationBasis": {
     "cash": 382129,
-    "note": "10:30 intraday valuation uses live Tencent ticks through 2026-06-17 10:37:10 +08:00. No simulated fill was created because stop and trailing-stop lines were not breached and high-score candidates were extended or unconfirmed."
+    "note": "13:30 afternoon review uses live Tencent ticks through 2026-06-17 13:37:03 +08:00. No simulated fill was created because stop lines were not breached and candidate entries were either extended or unconfirmed."
   },
   "portfolio": {
     "name": "Xiaozhi",
     "initialCapital": 677132,
-    "totalAsset": 667853,
-    "dailyPnl": 539,
-    "totalReturnPct": -1.37,
-    "benchmarkReturnPct": -0.58,
-    "excessReturnPct": -0.79,
-    "cashPct": 57.2,
-    "marketState": "Constructive-to-strong intraday tape, managed as range market because breadth was not fully rescanned.",
-    "todayAction": "10:30 intraday risk scan: no simulated trade; keep seven live holdings and defensive cash.",
-    "todayReason": "Stops and trailing stops were not triggered. Index tape is constructive, but full breadth was not rescanned and the strongest candidates are either extended, below MA20, or affected by corporate-action data reset."
+    "totalAsset": 669400,
+    "dailyPnl": 2086,
+    "totalReturnPct": -1.14,
+    "benchmarkReturnPct": -0.6,
+    "excessReturnPct": -0.54,
+    "cashPct": 57.1,
+    "marketState": "Constructive index tape, managed as range-to-strong unconfirmed because full-market breadth failed verification.",
+    "todayAction": "13:30 afternoon review: no simulated trade; keep seven holdings and defensive cash, watch weak-to-strong rotation.",
+    "todayReason": "CSI 300, CSI All Share, and ChiNext are all above MA20/MA60, and semiconductor beta is leading. Holdings 300303 and 600063 improved, while 600276/600157/002195 remain weak. A/B/C candidates are actionable only after non-chasing confirmation."
   },
   "indices": [
     {
       "name": "CSI 300",
       "code": "000300",
-      "close": 4901.74,
-      "changePct": 0.36
+      "close": 4903.49,
+      "changePct": 0.39
     },
     {
       "name": "CSI All Share",
       "code": "000985",
-      "close": 6451.05,
-      "changePct": 0.46
+      "close": 6447.51,
+      "changePct": 0.41
     },
     {
       "name": "ChiNext Index",
       "code": "399006",
-      "close": 4122.26,
-      "changePct": 0.47
+      "close": 4132.2,
+      "changePct": 0.71
     }
   ],
   "riskAlerts": [
     {
       "level": "high",
-      "title": "Stops not triggered at 10:30",
-      "detail": "300303 low 9.11 > 8.57 hard stop; 600063 low 8.12 > 7.17 trailing profit line. No forced simulated sell."
+      "title": "Continuation improved but no forced sell",
+      "detail": "300303 rose to 9.85 and 600063 to 8.51; intraday lows 9.11 and 8.12 stayed above the 8.57 hard stop and 7.17 trailing-profit line."
     },
     {
       "level": "medium",
-      "title": "Weak holdings remain the main drag",
-      "detail": "600276 -0.68%, 600157 -1.18%, and 002195 -0.69% are not right-side leaders; no averaging down."
+      "title": "Weak holdings did not rotate strong",
+      "detail": "600276 remains below MA20/MA60, 600157 remains below MA20/MA60, and 002195 remains below MA20/MA60. No averaging down."
     },
     {
       "level": "medium",
-      "title": "Exposure remains defensive",
-      "detail": "Cash is 382,129 yuan, 57.2% of NAV. Equity exposure is about 42.8%, so abnormal portfolio drawdown risk is contained."
+      "title": "Cash buffer remains defensive",
+      "detail": "Cash is 382,129 yuan, 57.1% of NAV. This allows rotation only if a candidate confirms without increasing portfolio risk."
+    },
+    {
+      "level": "medium",
+      "title": "Breadth not verified",
+      "detail": "Eastmoney breadth check timed out during SSL handshake, so the stronger index tape is not upgraded to a fully confirmed strong-market regime."
     }
   ],
   "positions": [
@@ -66,56 +71,56 @@
       "name": "Jufei Optoelectronics",
       "code": "300303",
       "quantity": 4000,
-      "price": 9.52,
-      "dayChangePct": 2.26,
-      "profit": "+213.9%",
-      "weight": "5.7%",
-      "status": "Repair watch",
-      "note": "Price 9.52; low 9.11 stayed above 8.57 hard stop; above MA20 9.18, above MA60 9.49."
+      "price": 9.84,
+      "dayChangePct": 5.69,
+      "profit": "+224.8%",
+      "weight": "5.9%",
+      "status": "Continuation hold",
+      "note": "Price 9.84; afternoon continuation strengthened; low 9.11 stayed above 8.57 hard stop; above MA20 9.19/MA60 9.5."
     },
     {
       "name": "Zijiang Enterprise",
       "code": "600210",
       "quantity": 8500,
-      "price": 6.68,
-      "dayChangePct": -0.45,
-      "profit": "+32.3%",
+      "price": 6.66,
+      "dayChangePct": -0.75,
+      "profit": "+31.9%",
       "weight": "8.5%",
-      "status": "Hold after reduction",
-      "note": "Price 6.68; above MA20 6.59 but below MA60 6.80; keep reduced position."
+      "status": "Reduced-position hold",
+      "note": "Price 6.66; still above MA20 6.59 but below MA60 6.8; no add until reclaiming MA60."
     },
     {
       "name": "Hengrui Medicine",
       "code": "600276",
       "quantity": 1300,
-      "price": 47.03,
-      "dayChangePct": -0.68,
+      "price": 47.02,
+      "dayChangePct": -0.7,
       "profit": "-7.0%",
-      "weight": "9.2%",
+      "weight": "9.1%",
       "status": "Weak hold",
-      "note": "Price 47.03; below MA20 48.19/MA60 52.65; no averaging down."
+      "note": "Price 47.02; below MA20 48.19/MA60 52.65; weak-to-strong has not appeared, no averaging down."
     },
     {
       "name": "Wanwei High-tech",
       "code": "600063",
       "quantity": 5500,
-      "price": 8.35,
-      "dayChangePct": 1.21,
-      "profit": "+59.7%",
-      "weight": "6.9%",
+      "price": 8.45,
+      "dayChangePct": 2.42,
+      "profit": "+62.8%",
+      "weight": "7.0%",
       "status": "Profit-protection hold",
-      "note": "Price 8.35; low 8.12 stayed above 7.17 trailing profit line; above MA20 7.34/MA60 7.00."
+      "note": "Price 8.45; afternoon continuation improved; low 8.12 stayed above 7.17 trailing profit line; above MA20 7.34/MA60 7.0."
     },
     {
       "name": "Yongtai Energy",
       "code": "600157",
       "quantity": 12000,
-      "price": 1.68,
-      "dayChangePct": -1.18,
-      "profit": "+11.0%",
+      "price": 1.67,
+      "dayChangePct": -1.76,
+      "profit": "+10.3%",
       "weight": "3.0%",
       "status": "Governance-risk watch",
-      "note": "Price 1.68; below MA20 1.75/MA60 1.77; low-priced holding, no add."
+      "note": "Price 1.67; below MA20 1.75/MA60 1.77; low-priced weak holding, no add."
     },
     {
       "name": "Yanshan Technology",
@@ -124,7 +129,7 @@
       "price": 7.19,
       "dayChangePct": -0.69,
       "profit": "unknown",
-      "weight": "2.2%",
+      "weight": "2.1%",
       "status": "Weak watch",
       "note": "Price 7.19; below MA20 7.51/MA60 8.48; zero-cost exemption management, no new risk."
     },
@@ -132,58 +137,73 @@
       "name": "CSI 300 ETF",
       "code": "510300",
       "quantity": 10000,
-      "price": 4.926,
-      "dayChangePct": 0.33,
+      "price": 4.928,
+      "dayChangePct": 0.37,
       "profit": "-0.6%",
       "weight": "7.4%",
       "status": "ETF core hold",
-      "note": "Price 4.926; above MA20 4.879/MA60 4.767; core ETF, no chase."
+      "note": "Price 4.928; above MA20 4.88/MA60 4.77; core ETF, no chase."
     }
   ],
   "watchlist": [
     {
-      "name": "Dinglong",
-      "code": "300054",
-      "price": 89.85,
-      "status": "High score but overheated; no chase",
-      "note": "89.85, +6.46%; far above MA20 74.11/MA60 62.45. Keep on watch only."
+      "name": "JCET",
+      "code": "600584",
+      "price": 81.45,
+      "status": "A candidate: right-side leader, wait for non-chasing entry",
+      "note": "81.45, 5.88%; above MA20 77.06/MA60 56.32; intraday high 82.83. Strong continuation, but no chase after a wide move."
     },
     {
       "name": "SMIC",
       "code": "688981",
-      "price": 130.2,
-      "status": "Wait for MA20 recovery",
-      "note": "130.20, +0.05%; below MA20 134.12 but above MA60 116.75. Not a buy trigger."
+      "price": 133.9,
+      "status": "B candidate: weak-to-strong trigger only after MA20 reclaim",
+      "note": "133.9, 2.89%; near but still not decisively above MA20 134.32, above MA60 116.81. Needs hold above MA20 and avoid late fade."
     },
     {
-      "name": "JCET",
-      "code": "600584",
-      "price": 81.31,
-      "status": "High-score right-side candidate; wait for pullback/confirmation",
-      "note": "81.31, +5.69%; above MA20 77.05/MA60 56.31, volume ratio 0.5x. Strong, but 10:30 chase risk is high."
+      "name": "Semiconductor ETF",
+      "code": "512480",
+      "price": 2.353,
+      "status": "C candidate: sector ETF only on controlled pullback",
+      "note": "2.353, 4.39%; above MA20 2.18/MA60 1.86. Sector strength verified, but afternoon chase risk is high."
+    },
+    {
+      "name": "STAR 50 ETF",
+      "code": "588000",
+      "price": 1.919,
+      "status": "C candidate: broad beta repair, no chase",
+      "note": "1.919, 3.45%; above MA20 1.83/MA60 1.64. Use only if market breadth confirms and entry is not extended."
+    },
+    {
+      "name": "Dinglong",
+      "code": "300054",
+      "price": 92.33,
+      "status": "A watch but overheated; no chase",
+      "note": "92.33, 9.4%; far above MA20 74.22/MA60 62.49. Treat as strength reference, not a 13:30 buy."
     },
     {
       "name": "Jiayuan Technology",
       "code": "688388",
-      "price": 50.1,
-      "status": "Corporate-action risk; data reset watch",
-      "note": "50.10, +2.39%; quote flags show CNY, so do not compare directly with old 70.90 reference."
+      "price": 48.14,
+      "status": "Exclude for now: DR/corporate-action reset",
+      "note": "48.14, -1.61%; quote name flags DR. Do not compare with old reference or create a simulated trade."
     }
   ],
   "nextPlan": [
-    "Continue monitoring 300303 hard stop at 8.57 and 600063 trailing profit line at 7.17 during the afternoon review.",
-    "Do not add to 600276, 600157, or 002195 before a right-side recovery above MA20 with better relative strength.",
-    "Keep cash near defensive range unless breadth confirmation improves and a candidate gives a non-chasing entry.",
-    "High-score focus: 600584 is the cleanest right-side candidate, but wait for confirmation or a controlled pullback; 300054 is too extended; 688981 needs MA20 recovery; 688388 requires DR data reset normalization.",
-    "User has not reported a 2026-06-17 asset value; assetHistory.user remains null and the 2026-06-11 value is not carried forward."
+    "Continuation: keep 300303 and 600063 while they stay above the 8.57 hard stop and 7.17 trailing-profit line; do not sell strength just because of a normal afternoon pullback.",
+    "Risk change: do not add to 600276, 600157, or 002195 until they reclaim MA20 with relative strength; if they lag while A/B candidates confirm, prepare sell-weak/switch-strong review at 14:50.",
+    "A candidate: 600584 is the cleanest right-side leader, but only consider it after a controlled pullback or late confirmation that does not chase the intraday high.",
+    "B candidate: 688981 needs a firm reclaim and hold above MA20; weak-to-strong condition is hold above MA20 plus no late fade and sector strength remaining intact.",
+    "C candidates: 512480 and 588000 can be small ETF probes only on non-extended entries; 300054 is too overheated and 688388 is excluded until DR data normalization is clear.",
+    "User has not reported a 2026-06-17 asset value; assetHistory.user remains null and the 2026-06-11 value is not carried forward as a new report."
   ],
   "userPortfolio": {
     "asOf": "2026-06-11",
     "totalAsset": 668992.58,
     "returnPct": -1.2,
-    "assetGapVsXiaozhi": 1139.58,
-    "returnGapVsXiaozhiPct": 0.17,
-    "leader": "User live account",
+    "assetGapVsXiaozhi": -407.42,
+    "returnGapVsXiaozhiPct": -0.06,
+    "leader": "Xiaozhi by current simulated NAV, but user value is stale",
     "note": "Latest user report remains 668,992.58 yuan as of 2026-06-11. No 2026-06-17 user value was reported, so it is not treated as a new daily report."
   },
   "assetHistory": [
@@ -245,11 +265,11 @@
     },
     {
       "date": "2026-06-17",
-      "xiaozhi": 667853,
+      "xiaozhi": 669400,
       "user": null,
-      "xiaozhiReturnPct": -1.37,
+      "xiaozhiReturnPct": -1.14,
       "userReturnPct": null,
-      "action": "10:30 intraday risk scan; stops and trailing stops not triggered; no new simulated trade; user not reported"
+      "action": "13:30 afternoon review; continuation improved in 300303/600063; no stops triggered; no new simulated trade; user not reported"
     }
   ]
 }
