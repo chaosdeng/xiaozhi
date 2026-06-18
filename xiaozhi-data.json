@@ -1,74 +1,74 @@
 {
-  "updatedAt": "2026-06-18 13:35",
-  "quoteTimestamp": "2026-06-18 13:35:39 +08:00",
+  "updatedAt": "2026-06-18 15:44",
+  "quoteTimestamp": "2026-06-18 15:44:46 +08:00",
   "tradingDate": "2026-06-18",
   "dataSource": {
     "name": "Tencent public quote API and Tencent public K-line API",
-    "status": "Tencent intraday quotes verified for seven JSON holdings and CSI 300, CSI All Share, ChiNext on trading date 2026-06-18; latest quote timestamp 13:35:39 Beijing time; daily K-lines latest date 2026-06-18.",
-    "note": "Public quote sources have no formal SLA. This 13:30 review used current holding/index quotes plus single-symbol K-lines; no real securities order was placed and no unverified price was invented."
+    "status": "Tencent post-close quotes verified for seven authoritative JSON holdings and CSI 300, CSI All Share, ChiNext on trading date 2026-06-18; latest quote timestamp 15:44:46 Beijing time; daily K-lines latest date 2026-06-18.",
+    "note": "Public quote sources have no formal SLA. The task wording mentioned eight holdings, but the current JSON/pages contain seven positions after the prior exit of Oriental Pearl; no eighth holding, quote, or trade was invented."
   },
   "valuationBasis": {
     "cash": 382129,
-    "note": "13:30 afternoon review uses verified Tencent intraday quotes through 2026-06-18 13:35:39 +08:00. No simulated fill was created; this is a continuation/risk/rotation checkpoint."
+    "note": "15:40 close review uses verified Tencent post-close quotes through 2026-06-18 15:44:46 +08:00. No simulated fill was created; valuation is based on seven current holdings plus cash."
   },
   "portfolio": {
     "name": "Xiaozhi",
     "initialCapital": 677132,
-    "totalAsset": 670444,
-    "dailyPnl": 433,
-    "totalReturnPct": -0.99,
+    "totalAsset": 669605,
+    "dailyPnl": -406,
+    "totalReturnPct": -1.11,
     "benchmarkReturnPct": 0.52,
-    "excessReturnPct": -1.51,
-    "cashPct": 57.0,
-    "marketState": "Constructive/strong index regime: CSI 300, CSI All Share, and ChiNext are all above MA20 and MA60 intraday. Treat as selective risk-on, not full aggression, because breadth and all-market candidate scan were not independently verified.",
-    "todayAction": "13:30 afternoon review: no simulated trade. Continue holding seven positions, protect 300303 and 600063, do not average down 600157/002195, and require weak-to-strong confirmation before any rotation.",
-    "todayReason": "Index continuation is intact and 600276 is attempting a weak-to-strong rebound above MA20, but 600210/600157/002195 remain below key averages and 600063 has faded from its intraday spike. With cash still above 56%, the simulated response is conditional rotation discipline rather than a midday chase."
+    "excessReturnPct": -1.63,
+    "cashPct": 57.1,
+    "marketState": "Constructive/strong index regime: CSI 300, CSI All Share, and ChiNext all closed above MA20 and MA60. Breadth was not independently verified because the close review prioritized verified holdings and key indices.",
+    "todayAction": "15:40 close review: no simulated trade. Hold seven current positions, protect 300303 and 600063, keep 600157/002195/600210 on no-add watch, and treat 600276 as a conditional repair candidate rather than a chase.",
+    "todayReason": "Key indices closed above MA20/MA60 and cash remains high, but several holdings still sit below important averages. 600276 repaired above MA20, 510300 supports beta exposure, while 600210/600157/002195 remain weak. The correct simulated action is risk control and next-day conditional rotation, not an after-close invented trade."
   },
   "indices": [
     {
       "name": "CSI 300",
       "code": "000300",
-      "close": 4960.74,
-      "changePct": 0.6
+      "close": 4941.6,
+      "changePct": 0.21
     },
     {
       "name": "CSI All Share",
       "code": "000985",
-      "close": 6515.22,
-      "changePct": 0.59
+      "close": 6499.33,
+      "changePct": 0.34
     },
     {
       "name": "ChiNext Index",
       "code": "399006",
-      "close": 4254.89,
-      "changePct": 2.11
+      "close": 4252.39,
+      "changePct": 2.05
     }
   ],
   "riskAlerts": [
     {
       "level": "medium",
-      "title": "Continuation intact, but not broad confirmation",
-      "detail": "CSI 300 4960.74, CSI All Share 6515.22, and ChiNext 4254.89 are above MA20/MA60. Breadth was not separately verified, so risk budget stays selective."
+      "title": "Constructive index tape, breadth unverified",
+      "detail": "CSI 300 4941.60, CSI All Share 6499.33, and ChiNext 4252.39 closed above MA20/MA60. Breadth was not scanned before saving the portfolio result."
     },
     {
       "level": "high",
-      "title": "Winner protection still primary",
-      "detail": "300303 low 9.56 remains above 8.57 hard stop; 600063 low 8.30 remains above the 7.17 trailing-profit line, but its intraday high 9.02 faded, so no add."
+      "title": "Winner protection remains primary",
+      "detail": "300303 low 9.56 stayed above the 8.57 hard stop; 600063 low 8.30 stayed above the 7.17 trailing-profit line, but its high 9.02 faded into an 8.46 close."
     },
     {
       "level": "medium",
-      "title": "Weak-to-strong candidate is conditional",
-      "detail": "600276 is above MA20 48.06 at 48.70, but still below MA60 52.55. It can rotate stronger only if it holds MA20 into the close and relative strength persists."
+      "title": "600276 repair is conditional",
+      "detail": "600276 closed 48.42, above MA20 48.05 but below MA60 52.54; next action requires follow-through, not chasing."
     },
     {
       "level": "medium",
       "title": "Weak laggards remain blocked from adding",
-      "detail": "600157 1.64 is below MA20 1.75/MA60 1.77; 002195 7.16 is below MA20 7.46/MA60 8.44; 600210 is marginally below MA20 6.59 and below MA60 6.79."
+      "detail": "600210 6.56, 600157 1.64, and 002195 7.12 all closed below MA20/MA60."
     },
     {
       "level": "medium",
-      "title": "Cash remains available but gated",
-      "detail": "Cash is 382,129 yuan, 57.0% of NAV. Use only for confirmed A/B setups or a controlled C ETF pullback; do not spend cash solely because indices are green."
+      "title": "Cash buffer stays gated",
+      "detail": "Cash is 382,129 yuan, 57.1% of NAV. Use it only for confirmed A/B setups or a controlled ETF fallback."
     }
   ],
   "positions": [
@@ -76,45 +76,45 @@
       "name": "Jufei Optoelectronics",
       "code": "300303",
       "quantity": 4000,
-      "price": 9.67,
-      "dayChangePct": -2.03,
+      "price": 9.62,
+      "dayChangePct": -2.53,
       "profit": "+219.1%",
-      "weight": "5.8%",
+      "weight": "5.7%",
       "status": "Continuation hold",
-      "note": "13:30 price 9.670; day -2.03%; high/low 9.830/9.560; MA20 9.20, MA60 9.50; 8.57 hard stop."
+      "note": "Close 9.620; day -2.53%; high/low 9.830/9.560; MA20 9.19, MA60 9.50; low stayed above 8.57 hard stop; still above MA20/MA60 but closed down, so no add."
     },
     {
       "name": "Zijiang Enterprise",
       "code": "600210",
       "quantity": 8500,
-      "price": 6.57,
-      "dayChangePct": -1.5,
+      "price": 6.56,
+      "dayChangePct": -1.65,
       "profit": "+30.1%",
       "weight": "8.3%",
-      "status": "Marginal trend watch",
-      "note": "13:30 price 6.570; day -1.50%; high/low 6.670/6.540; MA20 6.59, MA60 6.79; reclaim MA20/MA60 before add."
+      "status": "Weak trend watch",
+      "note": "Close 6.560; day -1.65%; high/low 6.670/6.540; MA20 6.59, MA60 6.79; closed below MA20 and MA60; wait for reclaim before add."
     },
     {
       "name": "Hengrui Medicine",
       "code": "600276",
       "quantity": 1300,
-      "price": 48.7,
-      "dayChangePct": 3.64,
+      "price": 48.42,
+      "dayChangePct": 3.04,
       "profit": "-3.6%",
       "weight": "9.4%",
       "status": "Weak-to-strong watch",
-      "note": "13:30 price 48.700; day +3.64%; high/low 49.500/46.610; MA20 48.06, MA60 52.55; trend repair watch."
+      "note": "Close 48.420; day +3.04%; high/low 49.500/46.610; MA20 48.05, MA60 52.54; closed above MA20 but still below MA60 after strong rebound; no chase."
     },
     {
       "name": "Wanwei High-tech",
       "code": "600063",
       "quantity": 5500,
-      "price": 8.48,
-      "dayChangePct": 0.0,
+      "price": 8.46,
+      "dayChangePct": -0.24,
       "profit": "+63.4%",
-      "weight": "7.0%",
+      "weight": "6.9%",
       "status": "Profit-protection hold",
-      "note": "13:30 price 8.480; day +0.00%; high/low 9.020/8.300; MA20 7.47, MA60 7.03; 7.17 trailing-profit line."
+      "note": "Close 8.460; day -0.24%; high/low 9.020/8.300; MA20 7.47, MA60 7.03; low stayed above 7.17 trailing-profit line; spike faded from high 9.02."
     },
     {
       "name": "Yongtai Energy",
@@ -125,18 +125,18 @@
       "profit": "+8.3%",
       "weight": "2.9%",
       "status": "Weak hold / no add",
-      "note": "13:30 price 1.640; day -1.80%; high/low 1.670/1.630; MA20 1.75, MA60 1.77; no add while below MA20/MA60."
+      "note": "Close 1.640; day -1.80%; high/low 1.670/1.630; MA20 1.75, MA60 1.77; closed below MA20 and MA60; do not average down."
     },
     {
       "name": "Yanshan Technology",
       "code": "002195",
       "quantity": 2000,
-      "price": 7.16,
-      "dayChangePct": -0.28,
+      "price": 7.12,
+      "dayChangePct": -0.84,
       "profit": "unknown",
       "weight": "2.1%",
       "status": "Weak watch",
-      "note": "13:30 price 7.160; day -0.28%; high/low 7.230/7.080; MA20 7.46, MA60 8.44; zero-cost exemption; no new risk."
+      "note": "Close 7.120; day -0.84%; high/low 7.230/7.080; MA20 7.46, MA60 8.44; closed below MA20 and MA60; zero-cost exemption, no new risk."
     },
     {
       "name": "CSI 300 ETF",
@@ -147,46 +147,46 @@
       "profit": "+0.5%",
       "weight": "7.4%",
       "status": "ETF core hold",
-      "note": "13:30 price 4.984; day +0.52%; high/low 5.001/4.941; MA20 4.89, MA60 4.77; core ETF hold."
+      "note": "Close 4.984; day +0.52%; high/low 5.001/4.941; MA20 4.89, MA60 4.77; closed above MA20 and MA60; broad beta hold."
     }
   ],
   "watchlist": [
     {
       "name": "Hengrui Medicine",
       "code": "600276",
-      "price": 48.7,
+      "price": 48.42,
       "status": "A candidate - conditional",
-      "note": "Weak-to-strong trigger requires holding above MA20 48.06 into the close, improving relative strength, and no rejection below VWAP/MA20. Still below MA60 52.55, so no midday chase."
+      "note": "Close above MA20 48.05 after +3.04%, but still below MA60 52.54. Need next-day follow-through and sector confirmation."
     },
     {
       "name": "Jufei Optoelectronics",
       "code": "300303",
-      "price": 9.67,
+      "price": 9.62,
       "status": "B candidate - pullback only",
-      "note": "Continuation holding remains above MA20 9.20/MA60 9.50. Add only on controlled shrink-volume pullback and renewed strength; today's negative intraday change is not an add signal by itself."
+      "note": "Still above MA20 9.19/MA60 9.50; add only on controlled pullback and renewed strength, not after a weak close."
     },
     {
       "name": "CSI 300 ETF",
       "code": "510300",
       "price": 4.984,
       "status": "C candidate - ETF fallback",
-      "note": "Broad beta vehicle is above MA20 4.89/MA60 4.77. Only consider a small C-class test on a pullback toward support or if single-stock rotation quality is insufficient."
+      "note": "Closed above MA20 4.89/MA60 4.77. Small ETF fallback only if single-stock quality is insufficient."
     }
   ],
   "nextPlan": [
-    "Continuation: keep 300303 while above 8.57 and above MA20/MA60; keep 600063 while above the 7.17 trailing-profit line, but do not add after an intraday spike fades.",
-    "Risk changes: 600276 improved from weak hold to weak-to-strong watch after reclaiming MA20 intraday; 600210 slipped marginally below MA20 and remains below MA60; 600157 and 002195 stay no-add laggards.",
-    "A/B/C candidates: A=600276 only if MA20 hold and relative strength persist; B=300303 only on controlled pullback plus re-acceleration; C=510300 only as small ETF fallback near support.",
-    "Weak-to-strong rotation condition: sell/reduce a laggard only when the replacement has higher score, stronger sector logic, and does not raise portfolio concentration or stop-loss risk; do not rotate just to chase green candles.",
-    "User has not reported a 2026-06-18 asset value; assetHistory.user remains null and the 2026-06-11 value is not carried forward as a new report."
+    "Continue holding 300303 while above 8.57 and 600063 while above 7.17; if either breaks its protection line, risk handling takes priority over new buys.",
+    "For 600276, require next-day follow-through above MA20 and improved relative strength before any add or rotation decision; still respect MA60 overhead.",
+    "Do not add 600210, 600157, or 002195 while they remain below MA20/MA60; review sell-weak-switch-strong only if a replacement has a higher score and does not increase concentration risk.",
+    "Keep 510300 as core beta exposure; use additional ETF exposure only as a small C-class fallback near support.",
+    "User has not reported a 2026-06-18 asset value; assetHistory.user remains null and the 2026-06-11 user value is not carried forward as a new report."
   ],
   "userPortfolio": {
     "asOf": "2026-06-11",
     "totalAsset": 668992.58,
     "returnPct": -1.2,
-    "assetGapVsXiaozhi": -1451.42,
-    "returnGapVsXiaozhiPct": -0.21,
-    "leader": "Xiaozhi by current simulated NAV, but user value is stale",
+    "assetGapVsXiaozhi": -612.42,
+    "returnGapVsXiaozhiPct": -0.09,
+    "leader": "User by stale reported NAV; comparison is not current",
     "note": "Latest user report remains 668,992.58 yuan as of 2026-06-11. No 2026-06-18 user value was reported, so it is not treated as a new daily report."
   },
   "assetHistory": [
@@ -256,11 +256,11 @@
     },
     {
       "date": "2026-06-18",
-      "xiaozhi": 670444,
+      "xiaozhi": 669605,
       "user": null,
-      "xiaozhiReturnPct": -0.99,
+      "xiaozhiReturnPct": -1.11,
       "userReturnPct": null,
-      "action": "13:30 afternoon review; intraday valuation refreshed; no simulated trade; continuation/risk/rotation checkpoint; user not reported"
+      "action": "15:40 close review; verified seven current holdings and key indices; no stops or profit-protection lines triggered; no new simulated trade; user not reported"
     }
   ]
 }
